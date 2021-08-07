@@ -1,9 +1,9 @@
 package Chart;
 
 import javax.swing.*;
-import UsingClass.ColorSet;
-import UsingClass.MathAndConvert;
-import Panel.Scale;
+import Tools.ColorSet;
+import Tools.MathAndConvert;
+import Accessories.Scale;
 import java.awt.*;
 import java.awt.geom.Line2D;
 import java.awt.geom.Rectangle2D;

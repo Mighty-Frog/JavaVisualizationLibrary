@@ -22,14 +22,14 @@ public class ScatterPanel {
     public ScatterPanel(double[] numbers_x, double[] numbers_y,String name_x, String name_y, String title){
         j.setBounds((screenSize.width-frame_width)/2, (screenSize.height-frame_height)/2,frame_width,frame_height);
         j.add(new Scatter(numbers_x, numbers_y,name_x, name_y, title));
-        WindowListener wndCloser = new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent e) {
-                System.exit(0);
-            }
-        };
-        j.addWindowListener(wndCloser);
         j.setVisible(true);
+//        WindowListener wndCloser = new WindowAdapter() {
+//            @Override
+//            public void windowClosing(WindowEvent e) {
+//                System.exit(0);
+//            }
+ //       };
+ //       j.addWindowListener(wndCloser);
 
     }
 

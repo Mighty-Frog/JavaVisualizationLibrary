@@ -1,23 +1,11 @@
 import CSVReader.DataFrame;
 import CSVReader.DataList;
 import CSVReader.MultiDataList;
-import Chart.Barchart;
-import Chart.MultiBarchart;
-import Chart.Piechart;
-import Chart.Scatter;
 import Panel.BarPanel;
 import Panel.PiePanel;
 import Panel.ScatterPanel;
-import UsingClass.MathAndConvert;
+import Tools.MathAndConvert;
 
-import javax.imageio.ImageIO;
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
-import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
 
@@ -58,7 +46,6 @@ public class Main {
         new BarPanel(values1, names, "Each Employees' Salary",1);
         new ScatterPanel(values2, values1,"age", "salary", "Employee's Age and Salary ScatterChart");
         new PiePanel(values1, names, "Each Employees' Salary");
-        //there is some errors in multimentional array when parse csv, so multibarchart is not accurate
         new BarPanel(multivalues, indexnames,columns, "Tokyo Olympic Medal Table");
 /*
 

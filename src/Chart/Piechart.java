@@ -1,8 +1,8 @@
 package Chart;
 
-import UsingClass.ColorSet;
+import Tools.ColorSet;
 import Panel.PiePanel;
-import UsingClass.MathAndConvert;
+import Tools.MathAndConvert;
 
 import javax.swing.*;
 import java.awt.*;

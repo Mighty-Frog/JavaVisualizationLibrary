@@ -39,16 +39,15 @@ public PiePanel() {
         PiePanel p = new PiePanel();
         f.setBounds((screenSize.width-frame_width)/2, (screenSize.height-frame_height)/2,frame_width,frame_height);
         f.add(new Piechart(values, names, title));
-        WindowListener wndCloser = new WindowAdapter() {
-                @Override
-                public void windowClosing(WindowEvent e) {
-                    System.exit(0);
-                }
-            };
-        f.addWindowListener(wndCloser);
         f.setVisible(true);
-
-        }
+/*        WindowListener wndCloser = new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                System.exit(0);
+            }
+        };
+        f.addWindowListener(wndCloser);
+*/        }
 
 
 }

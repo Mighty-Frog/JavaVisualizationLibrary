@@ -1,8 +1,11 @@
 package Chart;
 
-import UsingClass.ColorSet;
-import UsingClass.MathAndConvert;
-import Panel.*;
+import Accessories.Axis;
+import Accessories.Grid;
+import Accessories.Scale;
+import Accessories.Title;
+import Tools.ColorSet;
+import Tools.MathAndConvert;
 
 import javax.swing.*;
 import java.awt.*;

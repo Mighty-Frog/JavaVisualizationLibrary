@@ -1,10 +1,9 @@
 package Chart;
 
 import javax.swing.*;
-import UsingClass.MathAndConvert;
-import Panel.Scale;
-import Panel.BarChartLabelAxis;
-import Panel.*;
+
+import Accessories.*;
+import Tools.MathAndConvert;
 
 import java.awt.*;
 import java.awt.geom.Line2D;

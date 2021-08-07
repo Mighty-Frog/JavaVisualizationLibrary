@@ -1,6 +1,6 @@
 package Chart;
 
-import UsingClass.MathAndConvert;
+import Tools.MathAndConvert;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
