@@ -10,6 +10,9 @@ import java.io.IOException;
 import java.util.Arrays;
 
 
+/**
+ * @author Jin Cheng
+ */
 public class Main {
     public static void main(String[] args) throws IOException {
         //testing input arguments

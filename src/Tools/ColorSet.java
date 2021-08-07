@@ -111,6 +111,8 @@ public class ColorSet {
     public final static Color 水色 = new Color(	136,173,166);
     public final static Color 黛绿 = new Color(66,102,102);
     public final static Color 铜绿 = new Color(84,150,136);
+    public final static Color 琥珀 = new Color(202,105,36);
+
     //public final static Color 水色 = new Color(	136,173,166);
     //81,154,115
 
