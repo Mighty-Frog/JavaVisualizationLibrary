@@ -11,7 +11,7 @@ import java.awt.geom.Rectangle2D;
 /**
  * @author Jin Cheng
  */
-public class Barchart extends JPanel {
+public class Barchart extends Chart {
 
     double[] numbers;
     String[] names;
@@ -20,7 +20,7 @@ public class Barchart extends JPanel {
     //char body info
     int origin_x = 200;
     int origin_y = 700;
-    int X_len = 700;
+    int X_len = 800;
     int Y_len = 500;
 
     //axis info
@@ -28,13 +28,16 @@ public class Barchart extends JPanel {
     int max_scale_y;
     int expected_scale_num = 10;
 
+    //bar color
+    public Color bar_color = new Color(160, 160, 206);
+
     //title position info
     int title_x;
     int title_y;
 
     double max_num;
     double min_num;
-    int bar_width = 20;
+    double bar_width;
     double bar_slot_width;
 
     //char body line
@@ -68,6 +71,7 @@ public class Barchart extends JPanel {
             g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
             //calculate some variables
             bar_slot_width = X_len/numbers.length;
+            bar_width =  bar_slot_width/2;
             max_num = MathAndConvert.max(numbers);
             min_num = MathAndConvert.min(numbers);
 
@@ -92,12 +96,14 @@ public class Barchart extends JPanel {
 
             // draw bars and bar names
                 double modified_max = Scale.getRealMax(max_num,min_num);
+                double modified_min = Scale.getRealMin(max_num,min_num);
+                double modified_range = modified_max-modified_min;
                 for (int i = 0; i < numbers.length; i++) {
                     double offset_bar_x = bar_slot_width * i;
                     double bar_x = origin_x + bar_slot_width / 2 - bar_width / 2 + offset_bar_x;
-                    double bar_y = origin_y - numbers[i] / (modified_max ) * Y_len;
+                    double bar_y = origin_y - (numbers[i]-modified_min)/modified_range * Y_len;
                     Rectangle2D bar = new Rectangle2D.Double(bar_x, bar_y, bar_width, origin_y - bar_y);
-                    g.setColor(new Color(160, 160, 206));
+                    g.setColor(bar_color);
                     g.fill(bar);
                     //draw name of each bar
                     String n = names[i];
@@ -106,8 +112,10 @@ public class Barchart extends JPanel {
                     int fontLen = g.getFontMetrics().stringWidth(n);
                     g.drawString(n, (int) (bar_x + bar_width / 2 - fontLen / 2), (int) (origin_y + 20 + 10));
                     //draw specific number of each bar
+                    String numberStr = String.valueOf(numbers[i]);
+                    int fontLen_num = g.getFontMetrics().stringWidth(numberStr);
                     g.setColor(new Color(0, 0, 100, 80));
-                    g.drawString(String.valueOf(numbers[i]), (int) (bar_x + bar_width / 2 - fontLen / 2), (int) (bar_y - 10));
+                    g.drawString(String.valueOf(numbers[i]), (int) (bar_x + bar_width / 2 - fontLen_num / 2), (int) (bar_y - 10));
                 }
     }
 }

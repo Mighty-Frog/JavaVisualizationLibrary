@@ -1,14 +1,17 @@
 import CSVReader.DataFrame;
 import CSVReader.DataList;
 import CSVReader.MultiDataList;
+import Chart.HistChart;
 import Panel.BarPanel;
+import Panel.HistPanel;
 import Panel.PiePanel;
 import Panel.ScatterPanel;
+import ScientificPlot.Distribution;
 import Tools.MathAndConvert;
 
+import java.awt.*;
 import java.io.IOException;
 import java.util.Arrays;
-
 
 /**
  * @author Jin Cheng
@@ -45,12 +48,21 @@ public class Main {
         double[][] multivalues = MathAndConvert.str2ToDouble2(multiDataList);
 
         // plot charts
-        new BarPanel(values1, names, "Each Employees' Salary");
+        BarPanel barpanel =    new BarPanel(values1, names, "Each Employees' Salary");
+        //barpanel.setColor(Color.cyan);
+        barpanel.show();
+
         new BarPanel(values1, names, "Each Employees' Salary",1);
+
         new ScatterPanel(values2, values1,"age", "salary", "Employee's Age and Salary ScatterChart");
         new PiePanel(values1, names, "Each Employees' Salary");
-        new BarPanel(multivalues, indexnames,columns, "Tokyo Olympic Medal Table");
-/*
+
+        //new BarPanel(multivalues, indexnames,columns, "Tokyo Olympic Medal Table");
+        HistPanel hist =  new HistPanel(values1,values1, 10, "salary Histogram");
+        hist.drawDistri();
+        hist.show();
+
+        /*
 
 //save image
             BufferedImage myImage = null;

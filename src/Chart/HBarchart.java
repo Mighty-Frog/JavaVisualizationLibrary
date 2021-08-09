@@ -22,7 +22,7 @@ public class HBarchart extends JPanel {
     //char body info
     int origin_x = 200;
     int origin_y = 700;
-    int X_len = 700;
+    int X_len = 800;
     int Y_len = 500;
 
     //axis info
@@ -36,7 +36,7 @@ public class HBarchart extends JPanel {
 
     double max_num;
     double min_num;
-    int bar_width = 20;
+    double bar_width;
     double bar_slot_width;
 
     //char body line
@@ -72,6 +72,7 @@ public class HBarchart extends JPanel {
 
         //calculate some variables
         bar_slot_width = Y_len/numbers.length;
+        bar_width = bar_slot_width/2;
         max_num = MathAndConvert.max(numbers);
         min_num = MathAndConvert.min(numbers);
 

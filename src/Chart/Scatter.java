@@ -27,7 +27,7 @@ public class Scatter extends JPanel {
     //chart body info
     int origin_x = 200;
     int origin_y = 700;
-    int X_len = 700;
+    int X_len = 800;
     int Y_len = 500;
 
     //axis info

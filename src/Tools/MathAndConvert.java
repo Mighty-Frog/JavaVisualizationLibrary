@@ -13,26 +13,31 @@ public class MathAndConvert {
 
     //return the max or min of a array
     public static double max(double[] d) {
-      return  Arrays.stream(d).max().getAsDouble();
+        return  Arrays.stream(d).max().getAsDouble();
     }
     public static int max(int[] d) {
         return  Arrays.stream(d).max().getAsInt();
     }
+
     public static double min(double[] d) {
         DoubleStream ds = Arrays.stream(d);
         return  ds.min().getAsDouble();
     }
+
     public static int min(int[] d) {
         return  Arrays.stream(d).max().getAsInt();
     }
+
     public static double max(double[][] d) {
       DoubleStream dd = Arrays.stream(d).flatMapToDouble(s -> Arrays.stream(s));
       return dd.max().getAsDouble();
     }
+
     public static double min(double[][] d) {
         DoubleStream dd = Arrays.stream(d).flatMapToDouble(s -> Arrays.stream(s));
         return dd.min().getAsDouble();
     }
+
     //convert 2D String array into 2D double Array
    public static double[][] str2ToDouble2(String[][] strArr) {
        double[][] result = Arrays.stream(strArr).map(s ->

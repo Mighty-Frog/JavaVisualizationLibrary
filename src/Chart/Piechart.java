@@ -64,12 +64,12 @@ public class Piechart extends JPanel {
             arcAngle = nums[i] * angleIncrease;
             // label angle using for making name of the element
             labelAngle = startnAgle + arcAngle / 2 - 90;
-            System.out.println("labelAngle: " + labelAngle);
+            //System.out.println("labelAngle: " + labelAngle);
             // iterated 14 colors in the colorSet
             g.setColor(colorSet[i % colorSet.length]);
             // draw arc, x,y the upper left coordinate,here is ((1000-500)/2,(1000-500)/2,)
             g.fillArc((pp.frame_width - pp.pie_diameter) / 2, (pp.frame_height - pp.pie_diameter) / 2, pp.pie_diameter, pp.pie_diameter, (int) Math.round(startnAgle), (int) Math.round(arcAngle));
-            System.out.println("startAngle: " + (startnAgle - 90));
+            //System.out.println("startAngle: " + (startnAgle - 90));
             // update the start angle for next element;
             startnAgle += arcAngle;
             //set the font and color of each element's name
@@ -125,11 +125,11 @@ public class Piechart extends JPanel {
                 layer++;
             }
 
-            System.out.println("0000000000     " + (pp.pie_position_x ));
-            System.out.println("0000000000    " + pp.pie_position_y + pp.pie_diameter*1);
+            //System.out.println("0000000000     " + (pp.pie_position_x ));
+            //System.out.println("0000000000    " + pp.pie_position_y + pp.pie_diameter*1);
 
       }
-        System.out.println("pp.pie_heart_x: " + pp.pie_heart_x + " pp.pie_heart_y: " + pp.pie_heart_y);
+        //System.out.println("pp.pie_heart_x: " + pp.pie_heart_x + " pp.pie_heart_y: " + pp.pie_heart_y);
         //g.setFont(new Font("arial", Font.PLAIN, 10));
         //g.drawString("CenterPositoinTest", (float)pp.pie_heart_x , (float) pp.pie_heart_y);
     }
