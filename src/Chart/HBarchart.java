@@ -3,6 +3,7 @@ package Chart;
 import javax.swing.*;
 
 import Accessories.*;
+import Accessories.Label;
 import Tools.MathAndConvert;
 
 import java.awt.*;
@@ -13,7 +14,7 @@ import java.awt.geom.Rectangle2D;
  * @author Jin Cheng
  */
 
-public class HBarchart extends JPanel {
+public class HBarchart extends Chart {
 
     double[] numbers;
     String[] names;
@@ -94,6 +95,11 @@ public class HBarchart extends JPanel {
 
         //draw grid
         new Grid( numbers,origin_x,origin_y, max_num,min_num, X_len, Y_len).drawGrid_x(g);
+
+        //draw label
+        Label l = new Label(names,  bar_slot_width,  bar_width, origin_x,origin_y,X_len,Y_len);
+        l.drawLabel_name_x(g);
+        l.drawLabel_name_y(g);
 
         // draw bars and bar names
         double modified_max = Scale.getRealMax(max_num,min_num);

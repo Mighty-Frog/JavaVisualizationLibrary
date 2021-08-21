@@ -2,6 +2,7 @@ package Chart;
 
 import Accessories.Axis;
 import Accessories.Grid;
+import Accessories.Label;
 import Accessories.Scale;
 import Accessories.Title;
 import Tools.ColorSet;
@@ -10,38 +11,25 @@ import Tools.MathAndConvert;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.Line2D;
+import java.util.Arrays;
 
 /**
  * @author Jin Cheng
  */
 
-public class Scatter extends JPanel {
+public class Scatter extends Chart {
     //parameters info
     double[] numbers_x;
     double[] numbers_y;
     String name_x;
     String name_y;
-    String names;
+    String[] names;
     String title;
 
     //chart body info
-    int origin_x = 200;
-    int origin_y = 700;
-    int X_len = 800;
-    int Y_len = 500;
 
     //axis info
-    int numbers_x_max = 0;
-    int numbers_x_min = 0;
-    int numbers_y_max = 0;
-    int numbers_y_min = 0;
-    int range_x_min = 0;
-    int range_x_max = 0;
-    int range_y_min = 0;
-    int range_y_max = 0;
-    int axis_scale_num = 0;
-    int max_scale_y = 0;
-    int expected_scale_num = 20;
+
 
     //title position info
     int title_x;
@@ -52,8 +40,8 @@ public class Scatter extends JPanel {
     double min_num_x;
     double min_num_y;
 
-    //int bar_width = 20;
-    //double bar_slot_width;
+    double bar_width;
+    double bar_slot_width;
 
     //chart body lines
     Line2D bottom = new Line2D.Double(origin_x,origin_y,origin_x + X_len, origin_y);
@@ -80,10 +68,20 @@ public class Scatter extends JPanel {
         Graphics2D g = (Graphics2D) g0;
         super.paintComponent(g);
 
+        //Remove stroke jaggies
+        g.setRenderingHint(RenderingHints.KEY_STROKE_CONTROL, RenderingHints.VALUE_STROKE_DEFAULT);
+        //Remove text jaggies
+        g.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING,RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+        //Remove graph jaggies
+        g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
         max_num_x = MathAndConvert.max(numbers_x);
         max_num_y = MathAndConvert.max(numbers_y);
         min_num_x = MathAndConvert.min(numbers_x);
         min_num_y = MathAndConvert.min(numbers_y);
+
+        bar_slot_width = X_len/numbers_x.length;
+        bar_width =  bar_slot_width*0.382;
 
         double modified_max_x = Scale.getRealMax(max_num_x,min_num_x);
         double modified_min_x = Scale.getRealMin(max_num_x,min_num_x);
@@ -111,6 +109,15 @@ public class Scatter extends JPanel {
         //draw vertical grid
          new Grid(numbers_y,origin_x,origin_y,max_num_y,min_num_y,X_len,Y_len).drawGrid_y(g);
         new Grid(numbers_x,origin_x,origin_y,max_num_x,min_num_x,X_len,Y_len).drawGrid_x(g);
+
+        //draw  label
+        String[] numbers_String = Arrays.stream(numbers_x)
+                .mapToObj(String::valueOf)
+                .toArray(String[]::new);
+        Accessories.Label l = new Label(numbers_String,  bar_slot_width,  bar_width, origin_x,origin_y,X_len,Y_len);
+        l.drawLabel_name_x(g);
+        l.drawLabel_name_y(g);
+
 
         //draw points
         for (int i = 0; i <numbers_x.length ; i++) {

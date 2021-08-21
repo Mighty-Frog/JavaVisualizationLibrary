@@ -9,6 +9,7 @@ import java.awt.event.WindowListener;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import Chart.Barchart;
+import Chart.LineChart;
 
 /**
  * @author Jin Cheng
@@ -21,9 +22,9 @@ public class LinePanel {
     JFrame j = new JFrame();
     Dimension screenSize   =   Toolkit.getDefaultToolkit().getScreenSize();// get screen size
 
-    public LinePanel(double[] values, String[] names, String title){
+    public LinePanel(double[] numbers_x, double[] numbers_y,String name_x, String name_y, String title){
         j.setBounds((screenSize.width-frame_width)/2, (screenSize.height-frame_height)/2,frame_width,frame_height);
-        //j.add(new LineChart());
+        j.add(new LineChart(numbers_x, numbers_y,name_x, name_y, title));
 
 
         WindowListener wndCloser = new WindowAdapter() {

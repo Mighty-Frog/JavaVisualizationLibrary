@@ -1,6 +1,7 @@
 package Chart;
 
 import Accessories.*;
+import Accessories.Label;
 import Tools.MathAndConvert;
 
 import java.awt.*;
@@ -93,9 +94,14 @@ public class Barchart extends Chart {
             new Grid( numbers,origin_x,origin_y, max_num,min_num, X_len, Y_len).drawGrid_y(g);
 
             //draw bar label
-            new Lable(names,  bar_slot_width,  bar_width, origin_x,origin_y).drawLable_x(g);
+            Label l = new Label(names,  bar_slot_width,  bar_width, origin_x,origin_y,X_len,Y_len);
+            l.drawLable_x(g);
+            l.drawLabel_name_x(g);
+            l.drawLabel_name_y(g);
 
-            // draw bars and bar names
+
+
+            // draw bars and bar value
                 double modified_max = Scale.getRealMax(max_num,min_num);
                 double modified_min = Scale.getRealMin(max_num,min_num);
                 double modified_range = modified_max-modified_min;
@@ -106,13 +112,9 @@ public class Barchart extends Chart {
                     Rectangle2D bar = new Rectangle2D.Double(bar_x, bar_y, bar_width, origin_y - bar_y);
                     g.setColor(bar_color);
                     g.fill(bar);
-                    //draw name of each bar
-                    String n = names[i];
+
                     g.setColor(Color.black);
                     g.setFont(new Font("arial", Font.PLAIN, 15));
-                    int fontLen = g.getFontMetrics().stringWidth(n);
-                    //g.drawString(n, (int) (bar_x + bar_width / 2 - fontLen / 2), (int) (origin_y + 20 + 10));
-                    //draw specific number of each bar
                     String numberStr = String.valueOf(numbers[i]);
                     int fontLen_num = g.getFontMetrics().stringWidth(numberStr);
                     g.setColor(new Color(0, 0, 100, 80));

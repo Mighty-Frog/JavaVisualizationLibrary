@@ -1,232 +1,140 @@
 package Chart;
 
+import Accessories.Axis;
+import Accessories.Grid;
+import Accessories.Label;
+import Accessories.Scale;
+import Accessories.Title;
+import Tools.ColorSet;
 import Tools.MathAndConvert;
 
-import java.awt.BasicStroke;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.FontMetrics;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Point;
-import java.awt.RenderingHints;
-import java.awt.Stroke;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.geom.Line2D;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
+import java.util.Arrays;
 
 /**
- * @author Luojie Lei
+ * @author Jin Cheng
  */
 
-public class LineChart extends JPanel {
-
-    double[] numbers;
-    String[] names;
+public class LineChart extends Chart {
+    //parameters info
+    double[] numbers_x;
+    double[] numbers_y;
+    String name_x;
+    String name_y;
+    String names;
     String title;
 
+    //chart body info
     int origin_x = 200;
     int origin_y = 700;
     int X_len = 800;
     int Y_len = 500;
 
-    int axis_scale_num;
-    int max_scale_y;
-    int scale_num = 20;
 
+    double bar_width;
+    double bar_slot_width;
+
+    //title position info
     int title_x;
     int title_y;
 
-    double max_num;
-    int bar_width = 20;
-    double bar_slot_width;
+    double max_num_x;
+    double max_num_y;
+    double min_num_x;
+    double min_num_y;
+
+    //int bar_width = 20;
+    //double bar_slot_width;
+
+    //chart body lines
     Line2D bottom = new Line2D.Double(origin_x,origin_y,origin_x + X_len, origin_y);
     Line2D top = new Line2D.Double(origin_x,origin_y-Y_len,origin_x + X_len, origin_y-Y_len);
     Line2D left = new Line2D.Double(origin_x,origin_y, origin_x, origin_y-Y_len);
     Line2D right = new Line2D.Double(origin_x+X_len,origin_y, origin_x+X_len, origin_y-Y_len);
 
-
-    public LineChart(double[] numbers, String[] names, String title){
-
-        this.numbers = numbers;
-        this.names = names;
+    //constructor1
+    public LineChart(double[] numbers_x, double[] numbers_y,String name_x, String name_y, String title){
+        this.numbers_x = numbers_x;
+        this.numbers_y = numbers_y;
+        this.name_x = name_x;
+        this.name_y = name_y;
         this.title = title;
-        bar_slot_width = X_len/numbers.length;
-        max_num = MathAndConvert.max(numbers);
     }
 
-    public LineChart(double[] v, String[] n){
-        this.numbers = v;
-        this.names = n;
-        bar_slot_width = X_len/numbers.length;
-        max_num = MathAndConvert.max(numbers);
-    }
-
-
-
-
-
-
-    private int width = 800;
-    private int heigth = 400;
-    private int padding = 25;
-    private int labelPadding = 25;
-    private Color lineColor = new Color(44, 102, 230, 180);
-    private Color pointColor = new Color(100, 100, 100, 180);
-    private Color gridColor = new Color(200, 200, 200, 200);
-    private static final Stroke GRAPH_STROKE = new BasicStroke(2f);
-    private int pointWidth = 4;
-    private int numberYDivisions = 10;
-    private List<Double> scores;
-
-    public LineChart(List<Double> scores) {
-        this.scores = scores;
+    public LineChart(double[] numbers_x, double[] numbers_y){
+        this.numbers_x = numbers_x;
+        this.numbers_y = numbers_y;
     }
 
     @Override
-    protected void paintComponent(Graphics g) {
+    public void  paintComponent(Graphics g0) {
+        Graphics2D g = (Graphics2D) g0;
         super.paintComponent(g);
-        Graphics2D g2 = (Graphics2D) g;
-        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-        double xScale = ((double) getWidth() - (2 * padding) - labelPadding) / (scores.size() - 1);
-        double yScale = ((double) getHeight() - 2 * padding - labelPadding) / (getMaxScore() - getMinScore());
+        //Remove stroke jaggies
+        g.setRenderingHint(RenderingHints.KEY_STROKE_CONTROL, RenderingHints.VALUE_STROKE_DEFAULT);
+        //Remove text jaggies
+        g.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING,RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+        //Remove graph jaggies
+        g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-        List<Point> graphPoints = new ArrayList<>();
-        for (int i = 0; i < scores.size(); i++) {
-            int x1 = (int) (i * xScale + padding + labelPadding);
-            int y1 = (int) ((getMaxScore() - scores.get(i)) * yScale + padding);
-            graphPoints.add(new Point(x1, y1));
+        max_num_x = MathAndConvert.max(numbers_x);
+        max_num_y = MathAndConvert.max(numbers_y);
+        min_num_x = MathAndConvert.min(numbers_x);
+        min_num_y = MathAndConvert.min(numbers_y);
+
+        bar_slot_width = X_len/numbers_x.length;
+        bar_width =  bar_slot_width*0.382;
+
+        double modified_max_x = Scale.getRealMax(max_num_x,min_num_x);
+        double modified_min_x = Scale.getRealMin(max_num_x,min_num_x);
+        double modified_max_y = Scale.getRealMax(max_num_y,min_num_y);
+        double modified_min_y = Scale.getRealMin(max_num_y,min_num_y);
+        double modified_range_x = modified_max_x-modified_min_x;
+        double modified_range_y = modified_max_y-modified_min_y;
+
+        //draw rect of barchart
+
+        g.draw(bottom);
+        g.draw(top);
+        g.draw(left);
+        g.draw(right);
+
+        //draw title
+        new Title(title, title_x, title_y, X_len, Y_len, origin_x, origin_y).drawTitle(g);
+
+        //draw X-axis
+        new Axis( numbers_x, origin_x, origin_y,max_num_x,min_num_x,X_len,Y_len).drawAxis_x(g);
+
+        //draw Y-axis,
+        new Axis( numbers_y, origin_x, origin_y,max_num_y,min_num_y,X_len, Y_len).drawAxis_y(g);
+
+        //draw vertical grid
+        new Grid(numbers_y,origin_x,origin_y,max_num_y,min_num_y,X_len,Y_len).drawGrid_y(g);
+        new Grid(numbers_x,origin_x,origin_y,max_num_x,min_num_x,X_len,Y_len).drawGrid_x(g);
+
+        //draw labels
+        String[] numbers_String = Arrays.stream(numbers_x)
+                .mapToObj(String::valueOf)
+                .toArray(String[]::new);
+        Accessories.Label l = new Label(numbers_String,  bar_slot_width,  bar_width, origin_x,origin_y,X_len,Y_len);
+        l.drawLabel_name_x(g);
+        l.drawLabel_name_y(g);
+
+        //draw line
+        for (int i = 0; i <numbers_x.length-1 ; i++) {
+            int position_x = (int) (origin_x + (numbers_x[i]-modified_min_x)/modified_range_x * X_len);
+            int position_y = (int) (origin_y - (numbers_y[i]-modified_min_y)/modified_range_y * Y_len);
+            int position_x_next = (int) (origin_x + (numbers_x[i+1]-modified_min_x)/modified_range_x * X_len);
+            int position_y_next = (int) (origin_y - (numbers_y[i+1]-modified_min_y)/modified_range_y * Y_len);
+            g.setColor(Color.orange);
+            g.drawLine( position_x, position_y,position_x_next,position_y_next);
+            //g.fillOval(position_x,position_y,15,15);
+
         }
 
-        // draw white background
-        g2.setColor(Color.gray);
-        g2.fillRect(padding + labelPadding, padding, getWidth() - (2 * padding) - labelPadding, getHeight() - 2 * padding - labelPadding);
-        g2.setColor(Color.BLACK);
 
-        // create hatch marks and grid lines for y axis.
-        for (int i = 0; i < numberYDivisions + 1; i++) {
-            int x0 = padding + labelPadding;
-            int x1 = pointWidth + padding + labelPadding;
-            int y0 = getHeight() - ((i * (getHeight() - padding * 2 - labelPadding)) / numberYDivisions + padding + labelPadding);
-            int y1 = y0;
-            if (scores.size() > 0) {
-                g2.setColor(gridColor);
-                g2.drawLine(padding + labelPadding + 1 + pointWidth, y0, getWidth() - padding, y1);
-                g2.setColor(Color.BLACK);
-                String yLabel = ((int) ((getMinScore() + (getMaxScore() - getMinScore()) * ((i * 1.0) / numberYDivisions)) * 100)) / 100.0 + "";
-                FontMetrics metrics = g2.getFontMetrics();
-                int labelWidth = metrics.stringWidth(yLabel);
-                g2.drawString(yLabel, x0 - labelWidth - 5, y0 + (metrics.getHeight() / 2) - 3);
-            }
-            g2.drawLine(x0, y0, x1, y1);
-        }
-
-        // and for x axis
-        for (int i = 0; i < scores.size(); i++) {
-            if (scores.size() > 1) {
-                int x0 = i * (getWidth() - padding * 2 - labelPadding) / (scores.size() - 1) + padding + labelPadding;
-                int x1 = x0;
-                int y0 = getHeight() - padding - labelPadding;
-                int y1 = y0 - pointWidth;
-                if ((i % ((int) ((scores.size() / 20.0)) + 1)) == 0) {
-                    g2.setColor(gridColor);
-                    g2.drawLine(x0, getHeight() - padding - labelPadding - 1 - pointWidth, x1, padding);
-                    g2.setColor(Color.BLACK);
-                    String xLabel = i + "";
-                    FontMetrics metrics = g2.getFontMetrics();
-                    int labelWidth = metrics.stringWidth(xLabel);
-                    g2.drawString(xLabel, x0 - labelWidth / 2, y0 + metrics.getHeight() + 3);
-                }
-                g2.drawLine(x0, y0, x1, y1);
-            }
-        }
-
-        // create x and y axes
-        g2.drawLine(padding + labelPadding, getHeight() - padding - labelPadding, padding + labelPadding, padding);
-        g2.drawLine(padding + labelPadding, getHeight() - padding - labelPadding, getWidth() - padding, getHeight() - padding - labelPadding);
-
-        Stroke oldStroke = g2.getStroke();
-        g2.setColor(lineColor);
-        g2.setStroke(GRAPH_STROKE);
-        for (int i = 0; i < graphPoints.size() - 1; i++) {
-            int x1 = graphPoints.get(i).x;
-            int y1 = graphPoints.get(i).y;
-            int x2 = graphPoints.get(i + 1).x;
-            int y2 = graphPoints.get(i + 1).y;
-            g2.drawLine(x1, y1, x2, y2);
-        }
-
-        g2.setStroke(oldStroke);
-        g2.setColor(pointColor);
-        for (int i = 0; i < graphPoints.size(); i++) {
-            int x = graphPoints.get(i).x - pointWidth / 2;
-            int y = graphPoints.get(i).y - pointWidth / 2;
-            int ovalW = pointWidth;
-            int ovalH = pointWidth;
-            g2.fillOval(x, y, ovalW, ovalH);
-        }
-    }
-
-    //    @Override
-//    public Dimension getPreferredSize() {
-//        return new Dimension(width, heigth);
-//    }
-    private double getMinScore() {
-        double minScore = Double.MAX_VALUE;
-        for (Double score : scores) {
-            minScore = Math.min(minScore, score);
-        }
-        return minScore;
-    }
-
-    private double getMaxScore() {
-        double maxScore = Double.MIN_VALUE;
-        for (Double score : scores) {
-            maxScore = Math.max(maxScore, score);
-        }
-        return maxScore;
-    }
-
-    public void setScores(List<Double> scores) {
-        this.scores = scores;
-        invalidate();
-        this.repaint();
-    }
-
-    public List<Double> getScores() {
-        return scores;
-    }
-
-    private static void createAndShowGui() {
-        List<Double> scores = new ArrayList<>();
-        Random random = new Random();
-        int maxDataPoints = 40;
-        int maxScore = 10;
-        for (int i = 0; i < maxDataPoints; i++) {
-            scores.add((double) random.nextDouble() * maxScore);
-//            scores.add((double) i);
-        }
-        LineChart mainPanel = new LineChart(scores);
-        mainPanel.setPreferredSize(new Dimension(800, 600));
-        JFrame frame = new JFrame("Line chart");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.getContentPane().add(mainPanel);
-        frame.pack();
-        frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
-    }
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                createAndShowGui();
-            }
-        });
     }
 }

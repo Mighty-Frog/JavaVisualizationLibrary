@@ -3,6 +3,7 @@ import CSVReader.DataList;
 import CSVReader.MultiDataList;
 import Chart.HistChart;
 import Panel.BarPanel;
+import Panel.LinePanel;
 import Panel.HistPanel;
 import Panel.PiePanel;
 import Panel.ScatterPanel;
@@ -56,13 +57,14 @@ public class Main {
         // plot charts
         BarPanel barpanel =    new BarPanel(values1, names, "Each Customer's points");
         barpanel.setColor(ColorSet.RoyalBlue);
-        barpanel.show();
+        //barpanel.show();
 
 
         BarPanel hpanel= new BarPanel(values1, names, "Each Customer's Points",1);
-        //hpanel.show();
+        hpanel.show();
 
-        //new ScatterPanel(values2, values1,"age", "salary", "Customers' Age and Points ScatterChart");
+        new ScatterPanel(values2, values1,"age", "salary", "Customers' Age and Points ScatterChart");
+        new LinePanel(values2, values1,"age", "salary", "Customers' Age and Points ScatterChart");
         //new PiePanel(values1, names, "Each Customer's Points");
 
        //new BarPanel(multivalues, indexnames,columns, "Tokyo Olympic Medal Table");
