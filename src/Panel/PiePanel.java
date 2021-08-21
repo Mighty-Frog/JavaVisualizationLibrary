@@ -24,7 +24,6 @@ import javax.swing.JPanel;
     // pie graph info
     public int pie_diameter = 500;
     public int pie_radius = pie_diameter / 2;
-
     public int pie_position_x = (frame_width - pie_diameter) / 2;
     public int pie_position_y = (frame_height - pie_diameter) / 2;
     public int pie_heart_x = pie_position_x + pie_diameter / 2;

@@ -132,12 +132,10 @@ public class ColorSet {
 
 
     public final static Color[] light = {
-            LightRed,  LightBlue,PaleGreen, Seashell1,Violet,
-            AntiqueWhite1, PeachPuff1, Cyan, NavajoWhite1, LightYellow,
-            LemonChiffon1, Ivory1,Honeydew1,LavenderBlush1, Plum, Azure,
-            Silver, LightGreen, LightGrey,Bisque1, LightPink,LightRed,
-            LightYellow, Violet, Plum, PaleGreen, YellowGreen, Lime, SandyBrown,
-            Peru, LemonChiffon, Lavender, Cyan, SteelBlue, SkyBlue, Whitesmoke,Snow1,
+            LightRed,Violet,  LightBlue, Seashell1,
+             PeachPuff1, Cyan, PaleGreen, LightYellow,  Plum,
+          YellowGreen, Lime, SandyBrown, LightPink,
+            Peru, LemonChiffon, Lavender,  SteelBlue, SkyBlue, Whitesmoke,Snow1,
     };
 
     public final static Color[] Dark = {

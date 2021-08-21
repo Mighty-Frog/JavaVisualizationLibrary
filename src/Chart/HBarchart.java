@@ -78,10 +78,10 @@ public class HBarchart extends JPanel {
 
         //draw rect of barchart
 
-        g.draw(bottom);
-        g.draw(top);
+        //g.draw(bottom);
+        //g.draw(top);
         g.draw(left);
-        g.draw(right);
+        //g.draw(right);
 
         //draw title
         new Title(title, title_x, title_y, X_len, Y_len, origin_x, origin_y).drawTitle(g);

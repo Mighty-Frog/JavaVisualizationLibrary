@@ -1,7 +1,5 @@
 package Chart;
 
-import javax.swing.*;
-
 import Accessories.*;
 import Tools.MathAndConvert;
 
@@ -71,16 +69,16 @@ public class Barchart extends Chart {
             g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
             //calculate some variables
             bar_slot_width = X_len/numbers.length;
-            bar_width =  bar_slot_width/2;
+            bar_width =  bar_slot_width*0.382;
             max_num = MathAndConvert.max(numbers);
             min_num = MathAndConvert.min(numbers);
 
             //draw rect of barchart
 
             g.draw(bottom);
-            g.draw(top);
-            g.draw(left);
-            g.draw(right);
+            //g.draw(top);
+            //g.draw(left);
+            //g.draw(right);
 
             //draw title
             new Title(title, title_x, title_y, X_len, Y_len, origin_x, origin_y).drawTitle(g);
@@ -93,6 +91,9 @@ public class Barchart extends Chart {
 
             //draw vertical grid
             new Grid( numbers,origin_x,origin_y, max_num,min_num, X_len, Y_len).drawGrid_y(g);
+
+            //draw bar label
+            new Lable(names,  bar_slot_width,  bar_width, origin_x,origin_y).drawLable_x(g);
 
             // draw bars and bar names
                 double modified_max = Scale.getRealMax(max_num,min_num);
@@ -110,7 +111,7 @@ public class Barchart extends Chart {
                     g.setColor(Color.black);
                     g.setFont(new Font("arial", Font.PLAIN, 15));
                     int fontLen = g.getFontMetrics().stringWidth(n);
-                    g.drawString(n, (int) (bar_x + bar_width / 2 - fontLen / 2), (int) (origin_y + 20 + 10));
+                    //g.drawString(n, (int) (bar_x + bar_width / 2 - fontLen / 2), (int) (origin_y + 20 + 10));
                     //draw specific number of each bar
                     String numberStr = String.valueOf(numbers[i]);
                     int fontLen_num = g.getFontMetrics().stringWidth(numberStr);

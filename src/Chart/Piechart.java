@@ -1,5 +1,6 @@
 package Chart;
 
+import Accessories.Title;
 import Tools.ColorSet;
 import Panel.PiePanel;
 import Tools.MathAndConvert;
@@ -37,6 +38,8 @@ public class Piechart extends JPanel {
     public void paintComponent(Graphics g0) {
         Graphics2D g = (Graphics2D) g0;
         super.paintComponent(g);
+        //Remove stroke jaggies
+        g.setRenderingHint(RenderingHints.KEY_STROKE_CONTROL, RenderingHints.VALUE_STROKE_DEFAULT);
         //Remove text jaggies
         g.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING,RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
         //Remove graph jaggies
@@ -49,14 +52,9 @@ public class Piechart extends JPanel {
         double startnAgle = 90;
         double arcAngle = 0;
         double labelAngle = 0;
+
         //draw title
-        int tilte_height = 40;
-        g.setFont(new Font("arial", Font.PLAIN, tilte_height));
-        int tilte_len = g.getFontMetrics().stringWidth(title);
-        int title_x = pp.pie_heart_x - tilte_len/2;
-        int title_y = pp.pie_heart_y - pp.pie_diameter/2 * 6/5 - tilte_height;
-        g.setColor(Color.BLUE);
-        g.drawString(title,title_x,title_y);
+        new Title(title,pp.pie_heart_x, pp.pie_heart_y,pp.pie_diameter).drawTitle_pie(g);
 
         //a loop to print every arc
         for (int i = 0; i < size; i++) {
@@ -69,6 +67,7 @@ public class Piechart extends JPanel {
             g.setColor(colorSet[i % colorSet.length]);
             // draw arc, x,y the upper left coordinate,here is ((1000-500)/2,(1000-500)/2,)
             g.fillArc((pp.frame_width - pp.pie_diameter) / 2, (pp.frame_height - pp.pie_diameter) / 2, pp.pie_diameter, pp.pie_diameter, (int) Math.round(startnAgle), (int) Math.round(arcAngle));
+
             //System.out.println("startAngle: " + (startnAgle - 90));
             // update the start angle for next element;
             startnAgle += arcAngle;
@@ -93,6 +92,19 @@ public class Piechart extends JPanel {
 
             }
         }
+
+        //draw border of each arc
+        for (int i = 0; i < size; i++) {
+            // each element's angle
+            arcAngle = nums[i] * angleIncrease;
+            // label angle using for making name of the element
+            g.setColor(Color.white);
+            g.drawArc((pp.frame_width - pp.pie_diameter) / 2, (pp.frame_height - pp.pie_diameter) / 2, pp.pie_diameter, pp.pie_diameter, (int) Math.round(startnAgle), (int) Math.round(arcAngle));
+            startnAgle += arcAngle;
+        }
+
+
+
         // element label cube
         int labelColorCubeSize = 15;
         int lableColorCubeNum = 0;

@@ -34,4 +34,21 @@ public class ImageSaving {
         ImageIO.write(rendImage, "jpg", file);
     }
 
+    /*
+    public void savePic(String path){
+		BufferedImage myImage = null;
+		try {
+			myImage = new Robot().createScreenCapture(
+					new Rectangle(jFrame.getX()+8, jFrame.getY()+30, jPanel.getWidth(), jPanel.getHeight()));
+			ImageIO.write(myImage, "jpg", new File(path));
+		} catch (AWTException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+
+//原文链接：https://blog.csdn.net/x_i_y_u_e/article/details/44017597
+     */
+
 }
