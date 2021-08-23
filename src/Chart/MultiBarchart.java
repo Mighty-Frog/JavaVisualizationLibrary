@@ -80,6 +80,7 @@ public class MultiBarchart extends JPanel {
         bar_slot_width = X_len/multinumbers.length;
         max_num = MathAndConvert.max(multinumbers);
         min_num = MathAndConvert.min(multinumbers);
+        double modified_max = Scale.getRealMax(max_num,min_num);
 
 
         //draw rect of barchart
@@ -127,7 +128,7 @@ public class MultiBarchart extends JPanel {
         }
 
         // draw bars and bar names
-        double modified_max = Scale.getRealMax(max_num,min_num);
+        //double modified_max = Scale.getRealMax(max_num,min_num);
         double mulitBarWidth = bar_width * multinumbers[0].length;
         for(int i = 0; i < multinumbers.length; i++){
             double offset_slot_x = bar_slot_width * i;

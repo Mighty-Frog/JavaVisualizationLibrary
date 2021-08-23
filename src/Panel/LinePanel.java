@@ -26,7 +26,6 @@ public class LinePanel {
         j.setBounds((screenSize.width-frame_width)/2, (screenSize.height-frame_height)/2,frame_width,frame_height);
         j.add(new LineChart(numbers_x, numbers_y,name_x, name_y, title));
 
-
         WindowListener wndCloser = new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {

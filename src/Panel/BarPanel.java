@@ -14,10 +14,10 @@ import Chart.Barchart;
 /**
  * @author Jin Cheng
  */
-public class BarPanel {
+public class BarPanel extends Panel{
     public int frame_width = 1200;
     public int frame_height = 1000;
-    static JFrame j = new JFrame();
+    public JFrame j = new JFrame();
     HBarchart hBarchart;
     Barchart barchart;
     MultiBarchart multiBarchart;
@@ -50,7 +50,8 @@ public class BarPanel {
         j.add(multiBarchart);
         //j.setVisible(true);
     }
-    public static void show(){
+    @Override
+    public  void show(){
         j.setVisible(true);
     }
 
