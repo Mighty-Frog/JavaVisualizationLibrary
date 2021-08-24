@@ -76,7 +76,7 @@ public class HistChart extends Chart {
 
         bar_width = (double) X_len / (bins + 2); // get 66.67
 
-        System.out.println("bar_width in HIstchart " + bar_width);
+        //System.out.println("bar_width in HIstchart " + bar_width);
         max_num = MathAndConvert.max(counts);
         min_num = MathAndConvert.min(counts);
 

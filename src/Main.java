@@ -24,7 +24,7 @@ public class Main {
         //testing input arguments
         String arg0 = ".\\testData\\employees3.csv"; //data path
         String medalTable = ".\\testData\\MedalTableShort.csv";
-        String employees5 = ".\\testData\\employees5.csv";
+        String employees5 = ".\\testData\\employees.csv";
         String arg1 = "barChart"; // barchar, scatter, linechart ...
         String arg2 = "Name";   // column——》 get a array String[]
         String arg3 = "Salary";
@@ -57,22 +57,22 @@ public class Main {
         // plot charts
         BarPanel barpanel =    new BarPanel(values1, names, "Each Customer's points");
         barpanel.setColor(ColorSet.RoyalBlue);
-        barpanel.show();
+        //barpanel.show();
 
 
         BarPanel hpanel= new BarPanel(values1, names, "Each Customer's Points",1);
         //hpanel.show();
 
         new ScatterPanel(values2, values1,"age", "salary", "Customers' Age and Points ScatterChart");
-        new LinePanel(values2, values1,"age", "salary", "Customers' Age and Points ScatterChart");
-        new PiePanel(values1, names, "Each Customer's Points");
+        //new LinePanel(values2, values1,"age", "salary", "Customers' Age and Points ScatterChart");
+        //new PiePanel(values1, names, "Each Customer's Points");
 
         BarPanel groupedbar = new BarPanel(multivalues, indexnames,columns, "Tokyo Olympic Medal Table");
-        groupedbar.show();
+        //groupedbar.show();
 
         HistPanel hist =  new HistPanel(values1,values1, 10, "Points Histogram");
         hist.drawDistri();
-        hist.show();
+        //hist.show();
 
         /*
 

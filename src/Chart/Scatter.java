@@ -123,9 +123,8 @@ public class Scatter extends Chart {
         for (int i = 0; i <numbers_x.length ; i++) {
             int position_x = (int) (origin_x + (numbers_x[i]-modified_min_x)/modified_range_x * X_len);
             int position_y = (int) (origin_y - (numbers_y[i]-modified_min_y)/modified_range_y * Y_len);
-            g.setColor(ColorSet.Dark[(i)%6]);
+            g.setColor(new Color(0,0,200,50));
             g.fillOval(position_x,position_y,15,15);
-            System.out.println("position_x"+position_x+"position_y"+position_y);
 
         }
 

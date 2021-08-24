@@ -45,7 +45,7 @@ public class Piechart extends JPanel {
         //Remove graph jaggies
         g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         super.paintComponent(g); //清空之前的浏览区域，若不调用，则会显示之前的图
-        setBackground(new Color(105, 105, 105,50));
+        setBackground(new Color(205, 205, 205,50));
         double sum = Arrays.stream(nums).parallel().reduce(0, Double::sum);
         int size = nums.length;
         double angleIncrease = 360 / sum;

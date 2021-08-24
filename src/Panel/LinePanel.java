@@ -33,8 +33,9 @@ public class LinePanel {
             }
         };
         j.addWindowListener(wndCloser);
-        j.setVisible(true);
 
     }
-
+    public  void show(){
+        j.setVisible(true);
+    }
 }

@@ -51,21 +51,21 @@ public class Plot {
         return barChart;
     }
 
-    public ScatterPanel scatterChart(String column_name_value_x, String column_name_value_y, String name_x, String name_y, String title){
+    public ScatterPanel scatterChart(String column_name_value_x, String column_name_value_y, String title){
         String[] value_x_String = new DataList(dataFrame, column_name_value_x).dataLineStr;
         String[] value_y_String = new DataList(dataFrame, column_name_value_y).dataLineStr;
         double[] values_x_doule = Arrays.stream(value_x_String).mapToDouble(Double::parseDouble).toArray();
         double[] values_y_doule = Arrays.stream(value_y_String).mapToDouble(Double::parseDouble).toArray();
-        this.scatterChart = new ScatterPanel(values_x_doule, values_y_doule, name_x, name_y,title);
+        this.scatterChart = new ScatterPanel(values_x_doule, values_y_doule,column_name_value_x,column_name_value_y,title);
         return scatterChart;
     }
 
-    public LinePanel lineChart(String column_name_value_x, String column_name_value_y, String name_x, String name_y, String title){
+    public LinePanel lineChart(String column_name_value_x, String column_name_value_y, String title){
         String[] value_x_String = new DataList(dataFrame, column_name_value_x).dataLineStr;
         String[] value_y_String = new DataList(dataFrame, column_name_value_y).dataLineStr;
         double[] values_x_doule = Arrays.stream(value_x_String).mapToDouble(Double::parseDouble).toArray();
         double[] values_y_doule = Arrays.stream(value_y_String).mapToDouble(Double::parseDouble).toArray();
-        this.lineChart = new LinePanel(values_x_doule, values_y_doule, name_x, name_y,title);
+        this.lineChart = new LinePanel(values_x_doule, values_y_doule,column_name_value_x,column_name_value_y,title);
         return lineChart;
     }
 
@@ -77,6 +77,14 @@ public class Plot {
         return pieChart;
     }
 
+    //HistPanel hist =  new HistPanel(values1,values1, 10, "Points Histogram");
+   // public HistPanel histChart(String values_column, String names_column, String title){
+      //  String[] names = new DataList(dataFrame, names_column).dataLineStr;
+      //  String[] values_String = new DataList(dataFrame, values_column).dataLineStr;
+      //  double[] values_doule = Arrays.stream(values_String).mapToDouble(Double::parseDouble).toArray();
+     //   this.pieChart =  new PiePanel(values_doule, names, title);
+      //  return pieChart;
+   // }
 
 
 }

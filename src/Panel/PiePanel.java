@@ -12,7 +12,8 @@ import javax.swing.JPanel;
 /**
  * @author Jin Cheng
  */
-    public class PiePanel extends JPanel {
+public class PiePanel extends JPanel {
+    public JFrame j = new JFrame();
     //height and width of the frame;
     public int frame_width = 1200;
     public int frame_height = 1000;
@@ -31,14 +32,14 @@ import javax.swing.JPanel;
 
     Piechart peichart = null;
 
-public PiePanel() {
-};
+    public PiePanel() {
+    };
+
     public PiePanel(double[] values,String[] names, String title){
-        JFrame f = new JFrame();
         PiePanel p = new PiePanel();
-        f.setBounds((screenSize.width-frame_width)/2, (screenSize.height-frame_height)/2,frame_width,frame_height);
-        f.add(new Piechart(values, names, title));
-        f.setVisible(true);
+        j.setBounds((screenSize.width-frame_width)/2, (screenSize.height-frame_height)/2,frame_width,frame_height);
+        j.add(new Piechart(values, names, title));
+        //f.setVisible(true);
 /*        WindowListener wndCloser = new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
@@ -47,7 +48,10 @@ public PiePanel() {
         };
         f.addWindowListener(wndCloser);
 */        }
-
+    @Override
+    public  void show(){
+        j.setVisible(true);
+    }
 
 }
 
