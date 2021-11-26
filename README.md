@@ -1,19 +1,5 @@
 # Java Data Visualization Library CJ-Plot
 
-[![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
-
-
-Your README file is normally the first entry point to your code. It should tell people why they should use your module, how they can install it, and how they can use it. Standardizing how you write your README makes creating and maintaining your READMEs easier. Great documentation takes work!
-
-This repository contains:
-
-1. [The specification](spec.md) for how a standard README should look.
-2. A link to [a linter](https://github.com/RichardLitt/standard-readme-preset) you can use to keep your README maintained ([work in progress](https://github.com/RichardLitt/standard-readme/issues/5)).
-3. A link to [a generator](https://github.com/RichardLitt/generator-standard-readme) you can use to create standard READMEs.
-4. [A badge](#badge) to point to this spec.
-5. [Examples of standard READMEs](example-readmes/) - such as this file you are reading.
-
-Standard Readme is designed for open source libraries. Although it’s [historically](#background) made for Node and npm projects, it also applies to libraries in other languages and package managers.
 
 
 ## Table of Contents
@@ -73,27 +59,27 @@ three dimensions,
 ![1637890650(1)](https://user-images.githubusercontent.com/78740875/143514178-e497eda3-64bf-414e-bfac-9bc9456ba0ce.png)
 
 ## Example
+Bar chart
+![image](https://user-images.githubusercontent.com/78740875/143514749-30643e9f-779f-4fb3-b32a-db197b672cc2.png)
 
-This is only a documentation package. You can print out [spec.md](spec.md) to your console:
+Histogram
+![image](https://user-images.githubusercontent.com/78740875/143514806-e10ef3dc-6350-4b97-b587-7f3b73951d61.png)
 
-```sh
-$ standard-readme-spec
-# Prints out the standard-readme spec
-```
+Horizontal Bar Chart
+![image](https://user-images.githubusercontent.com/78740875/143514832-50497046-b30c-491a-8a52-35c1d7851fc5.png)
 
-### Generator
+Multiple Bar Chart
+![image](https://user-images.githubusercontent.com/78740875/143514869-295651e1-4396-4d08-8727-c3dd3e13194a.png)
 
-To use the generator, look at [generator-standard-readme](https://github.com/RichardLitt/generator-standard-readme). There is a global executable to run the generator in that package, aliased as `standard-readme`.
+Pie Chart
+![image](https://user-images.githubusercontent.com/78740875/143514905-49a94832-785a-41d3-99df-577432f9f350.png)
 
+Scatter Chart
+![image](https://user-images.githubusercontent.com/78740875/143514927-34712419-8adf-4882-b9b1-1c0d1e4dce3a.png)
 
-
-## Example Readmes
-
-To see how the specification has been applied, see the [example-readmes](example-readmes/).
 
 ## Related Efforts
 
-- [Art of Readme](https://github.com/noffle/art-of-readme) - 💌 Learn the art of writing quality READMEs.
 - [open-source-template](https://github.com/davidbgk/open-source-template/) - A README template to encourage open-source contributions.
 
 ## Maintainers
