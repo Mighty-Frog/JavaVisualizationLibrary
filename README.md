@@ -1,8 +1,7 @@
-# Java Data Visualization Library- JC Chart
+# Java Data Visualization Library CJ-Plot
 
 [![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
 
-A standard style for README files
 
 Your README file is normally the first entry point to your code. It should tell people why they should use your module, how they can install it, and how they can use it. Standardizing how you write your README makes creating and maintaining your READMEs easier. Great documentation takes work!
 
@@ -20,12 +19,10 @@ Standard Readme is designed for open source libraries. Although it’s [historic
 ## Table of Contents
 
 - [Background](#background)
-- [Install](#install)
-- [Usage](#usage)
-	- [Generator](#generator)
+- [Objectives](objectives)
+- [Class-Structure](#class-structure)
+- [Example](#example)
 - [Badge](#badge)
-- [Example Readmes](#example-readmes)
-- [Related Efforts](#related-efforts)
 - [Maintainers](#maintainers)
 - [Contributing](#contributing)
 - [License](#license)
@@ -40,9 +37,9 @@ styles. The motivation for this would be to enable datasets being
 manipulated using java to visualized without the need to use other toolsets such as Python, R or 
 Matlab.
 
-Primary: 
-- Data pre-processing
-- Provide a method that turns data into a format suitable for plotting.
+## Objectives
+Primary: (Mostly achieved)
+- Provide a method that turns data into a format suitable for plotting. 
 - Provide methods that return descriptive statistics, both for plotting charts and get 
 statistical information, including mode, mean, median, sum, max, min, percentiles，
 quantile variance, skewness, covariance, etc.
@@ -55,7 +52,7 @@ including constant functions, power functions, square root functions, exponentia
 functions, logarithms functions, trigonometric functions, inverse trigonometric functions 
 and piecewise functions composed of elementary functions
 
-Secondary:
+Secondary:(On-going)
 - Data pre-processing
 - Support for trimming, merging, selecting and amending of tables.
 - Generate a linear regression curve for input data sets.
@@ -67,42 +64,15 @@ and width, line/column colour, label size, point shape, background colour, font 
 three dimensions,
 - Generate a smooth surface based on a 3-dimensional point set
 - Support for controlling the size, colour, texture, transparency, display angle, etc. of the 
-
 - Function plotting
 - Plot statistical distribution function
-Standard Readme started with the issue originally posed by [@maxogden](https://github.com/maxogden) over at [feross/standard](https://github.com/feross/standard) in [this issue](https://github.com/feross/standard/issues/141), about whether or not a tool to standardize readmes would be useful. A lot of that discussion ended up in [zcei's standard-readme](https://github.com/zcei/standard-readme/issues/1) repository. While working on maintaining the [IPFS](https://github.com/ipfs) repositories, I needed a way to standardize Readmes across that organization. This specification started as a result of that.
 
-> Your documentation is complete when someone can use your module without ever
-having to look at its code. This is very important. This makes it possible for
-you to separate your module's documented interface from its internal
-implementation (guts). This is good because it means that you are free to
-change the module's internals as long as the interface remains the same.
 
-> Remember: the documentation, not the code, defines what a module does.
+## Class Structure
 
-~ [Ken Williams, Perl Hackers](http://mathforum.org/ken/perl_modules.html#document)
+![1637890650(1)](https://user-images.githubusercontent.com/78740875/143514178-e497eda3-64bf-414e-bfac-9bc9456ba0ce.png)
 
-Writing READMEs is way too hard, and keeping them maintained is difficult. By offloading this process - making writing easier, making editing easier, making it clear whether or not an edit is up to spec or not - you can spend less time worrying about whether or not your initial documentation is good, and spend more time writing and using code.
-
-By having a standard, users can spend less time searching for the information they want. They can also build tools to gather search terms from descriptions, to automatically run example code, to check licensing, and so on.
-
-The goals for this repository are:
-
-1. A well defined **specification**. This can be found in the [Spec document](spec.md). It is a constant work in progress; please open issues to discuss changes.
-2. **An example README**. This Readme is fully standard-readme compliant, and there are more examples in the `example-readmes` folder.
-3. A **linter** that can be used to look at errors in a given Readme. Please refer to the [tracking issue](https://github.com/RichardLitt/standard-readme/issues/5).
-4. A **generator** that can be used to quickly scaffold out new READMEs. See [generator-standard-readme](https://github.com/RichardLitt/generator-standard-readme).
-5. A **compliant badge** for users. See [the badge](#badge).
-
-## Install
-
-This project uses [node](http://nodejs.org) and [npm](https://npmjs.com). Go check them out if you don't have them locally installed.
-
-```sh
-$ npm install --global standard-readme-spec
-```
-
-## Usage
+## Example
 
 This is only a documentation package. You can print out [spec.md](spec.md) to your console:
 
@@ -115,17 +85,7 @@ $ standard-readme-spec
 
 To use the generator, look at [generator-standard-readme](https://github.com/RichardLitt/generator-standard-readme). There is a global executable to run the generator in that package, aliased as `standard-readme`.
 
-## Badge
 
-If your README is compliant with Standard-Readme and you're on GitHub, it would be great if you could add the badge. This allows people to link back to this Spec, and helps adoption of the README. The badge is **not required**.
-
-[![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
-
-To add in Markdown format, use this code:
-
-```
-[![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
-```
 
 ## Example Readmes
 
@@ -138,13 +98,10 @@ To see how the specification has been applied, see the [example-readmes](example
 
 ## Maintainers
 
-[@RichardLitt](https://github.com/RichardLitt).
+[@JinCheng](https://github.com/Mighty-Frog/).
 
 ## Contributing
 
-Feel free to dive in! [Open an issue](https://github.com/RichardLitt/standard-readme/issues/new) or submit PRs.
-
-Standard Readme follows the [Contributor Covenant](http://contributor-covenant.org/version/1/3/0/) Code of Conduct.
 
 ### Contributors
 Cheng Jin , Lei Luojie
