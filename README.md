@@ -94,4 +94,4 @@ Cheng Jin , Lei Luojie
 
 ## License
 
-[University of St Andrews](LICENSE) © Jin Cheng
+MIT
